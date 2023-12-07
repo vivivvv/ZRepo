@@ -1,15 +1,32 @@
 package com.app.mybase.network
 
-import com.app.mybase.model.UserDetailsResponse
-import retrofit2.Response
+import com.app.mybase.model.NewsModel
+import com.app.mybase.model.WeatherDataModel
+import com.app.mybase.model.WeatherForecastModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiStories {
 
-    @GET("no-auth/api/authentication/user-info")
-    suspend fun getNotificationCount(@Query("loginName") loginName: String): UserDetailsResponse
+    @GET("v4/articles/")
+    suspend fun getNewsList(
+        @Query("format") format: String = "json",
+        @Query("limit") limit: Int = 100,
+        @Query("offset") offset: Int = 0,
+    ): NewsModel
 
-//    @GET("getAllUsers/{topic}")
-//    suspend fun getAllUsers(@Path("topic") String topic): List<User>
+    @GET("data/2.5/weather/")
+    suspend fun getWeather(
+        @Query("lat") lat: String,
+        @Query("lon") lon: String,
+        @Query("appid") appid: String
+    ): WeatherDataModel
+
+    @GET("data/2.5/forecast/")
+    suspend fun getForecastWeather(
+        @Query("lat") lat: String,
+        @Query("lon") lon: String,
+        @Query("appid") appid: String
+    ): WeatherForecastModel
+
 }

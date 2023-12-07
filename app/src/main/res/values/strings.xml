@@ -1,3 +1,31 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MyBase</string>
+    <string name="news_app">News App</string>
+    <string name="news_and_weather_reports">News and Weather reports</string>
+    <string name="phase_1">Phase 1</string>
+    <string name="phase_2">Phase 2</string>
+    <string name="news_description">News description</string>
+    <string name="image">Image</string>
+    <string name="news_title">News Title</string>
+    <string name="oops_please_try_again">Oops! please try again!</string>
+    <string name="search_news_here">Search news here …</string>
+    <string name="read_more">… Read more</string>
+    <string name="read_less">Read less</string>
+    <string name="ok">OK</string>
+    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="oops_please_enable_gps_connection">Oops! Please enable GPS connection…</string>
+    <string name="_00">28</string>
+    <string name="karaikudi">Karaikudi</string>
+    <string name="today">Today</string>
+    <string name="_12_june_2023">12 June 2023</string>
+    <string name="mostly_cloudy">Mostly Cloudy</string>
+    <string name="min_29">Min: 29</string>
+    <string name="max_29">Max: 29</string>
+    <string name="_0_00">0.00</string>
+    <string name="wind">Wind</string>
+    <string name="humidity">Humidity</string>
+    <string name="sea_level">Sea level</string>
+    <string name="c">°C</string>
+    <string name="thumbnail">Thumbnail</string>
+    <string name="forecast_overview">Forecast Overview</string>
 </resources>

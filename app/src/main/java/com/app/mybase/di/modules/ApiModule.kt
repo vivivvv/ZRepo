@@ -1,5 +1,6 @@
 package com.app.mybase.di.modules
 
+import com.app.mybase.BuildConfig
 import com.app.mybase.network.ApiStories
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -10,6 +11,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -47,14 +49,31 @@ class ApiModule {
 
     @Singleton
     @Provides
-    fun getRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
+    @Named("news_base_url")
+    fun getNewsApi(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl("https://www.epm-dev.demo-bpmlinks.com/").client(okHttpClient).build()
+            .baseUrl(BuildConfig.news_base_url).client(okHttpClient).build()
     }
 
     @Singleton
     @Provides
-    fun provideApiStories(retrofit: Retrofit): ApiStories {
+    @Named("news_base_url")
+    fun provideNewsApi(@Named("news_base_url") retrofit: Retrofit): ApiStories {
+        return retrofit.create(ApiStories::class.java)
+    }
+
+    @Singleton
+    @Provides
+    @Named("weather_base_url")
+    fun getWeatherApi(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(gson))
+            .baseUrl(BuildConfig.weather_base_url).client(okHttpClient).build()
+    }
+
+    @Singleton
+    @Provides
+    @Named("weather_base_url")
+    fun provideWeatherApi(@Named("weather_base_url") retrofit: Retrofit): ApiStories {
         return retrofit.create(ApiStories::class.java)
     }
 

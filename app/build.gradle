@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -15,6 +16,9 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "String", "news_base_url", "\"https://api.spaceflightnewsapi.net/\""
+        buildConfigField "String", "weather_base_url", "\"https://api.openweathermap.org/\""
+        buildConfigField "String", "weather_api_key", "\"d6c337019d36b8b6162f1b0f7f0a8194\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,17 +51,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    // ViewModel utilities for Compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     // LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
-    // Lifecycles only (without ViewModel or LiveData)
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    // Lifecycle utilities for Compose
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
-    // Saved state module for ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 
     // Retrofit
     implementation 'com.google.code.gson:gson:2.10.1'
@@ -75,4 +71,33 @@ dependencies {
     implementation 'com.google.dagger:dagger-android-support:2.47'
     kapt 'com.google.dagger:dagger-android-processor:2.47'
     kapt 'com.google.dagger:dagger-compiler:2.47'
+
+    // Font and size
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
+    // Splash screen
+    implementation "androidx.core:core-splashscreen:1.0.1"
+
+    // paging
+    implementation 'androidx.paging:paging-common-ktx:3.2.1'
+    implementation 'androidx.paging:paging-runtime-ktx:3.2.1'
+
+    // For load images on imageview
+    implementation 'com.github.bumptech.glide:glide:4.13.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // Room database
+    implementation "androidx.room:room-runtime:2.5.2"
+    kapt "androidx.room:room-compiler:2.5.2"
+    implementation "androidx.room:room-ktx:2.5.2"
+    implementation "androidx.room:room-paging:2.5.2"
+
+    // For location service
+    implementation "com.google.android.gms:play-services-location:21.0.1"
+
+    // For animation images
+    implementation "com.airbnb.android:lottie:6.2.0"
+
+
 }
