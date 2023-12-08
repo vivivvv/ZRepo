@@ -1,14 +1,12 @@
 package com.app.mybase.views.newslist
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -55,13 +53,6 @@ class NewsListActivity : BaseActivity<ActivityNewsListBinding, NewsListViewModel
         // Set search listener
         searchListener()
 
-        // For footer progress
-        lifecycleScope.launch {
-            newsAdapter.loadStateFlow.collect {
-                val state = it.refresh
-                viewModel.showLoading.value = state is LoadState.Loading
-            }
-        }
 
         // For load footer retry
         newsRecyclerView.adapter = newsAdapter.withLoadStateFooter(
