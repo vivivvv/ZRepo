@@ -27,7 +27,10 @@ import com.app.mybase.BuildConfig
 import com.app.mybase.R
 import com.app.mybase.base.BaseActivity
 import com.app.mybase.databinding.ActivityWeatherBinding
-import com.app.mybase.helper.*
+import com.app.mybase.helper.ApisResponse
+import com.app.mybase.helper.Utils
+import com.app.mybase.helper.gone
+import com.app.mybase.helper.visible
 import com.app.mybase.model.WeatherDataModel
 import com.app.mybase.views.weather.adaptor.ForecastListAdapter
 import com.google.android.gms.location.*
@@ -164,17 +167,9 @@ class WeatherActivity : BaseActivity<ActivityWeatherBinding, WeatherViewModel>()
             dateTimeText.text = Utils.convertTimestampToDate(weatherDataModel.dt)
             setAnimImage(this, weatherDataModel.weather[0].main)
             statusText.text = weatherDataModel.weather[0].main
-            degreeText.text =
-                Utils.kelvinToCelsius(weatherDataModel.main.temp).roundToInt().toString()
-            minTemp.text = "Min: ${
-                String.format("%.4f", Utils.kelvinToCelsius(weatherDataModel.main.temp_min))
-            }"
-            maxTemp.text = "Max: ${
-                String.format(
-                    "%.4f",
-                    Utils.kelvinToCelsius(weatherDataModel.main.temp_max)
-                )
-            }"
+            degreeText.text = weatherDataModel.main.temp.roundToInt().toString()
+            minTemp.text = "Min: ${String.format("%.4f", weatherDataModel.main.temp_min)}"
+            maxTemp.text = "Max: ${String.format("%.4f", weatherDataModel.main.temp_max)}"
             cityText.text = weatherDataModel.name
             windValue.text = weatherDataModel.wind.speed.toString()
             humidityValue.text = weatherDataModel.main.humidity.toString()
@@ -200,6 +195,7 @@ class WeatherActivity : BaseActivity<ActivityWeatherBinding, WeatherViewModel>()
                 binding.animationView.setAnimation(R.raw.clouds)
             }
         }
+        binding.animationView.playAnimation()
     }
 
     private fun getForecastWeather(lat: String, lon: String, appid: String) {

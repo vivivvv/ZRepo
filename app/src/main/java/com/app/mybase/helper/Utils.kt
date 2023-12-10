@@ -45,13 +45,13 @@ object Utils {
     }
 
     fun convertTimestampToDate(timestamp: Long): String {
-        val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
-        val date = Date(timestamp * 1000) // Convert seconds to milliseconds
-        return dateFormat.format(date)
-    }
-
-    fun kelvinToCelsius(kelvin: Double): Double {
-        return kelvin - 273.15
+        return try {
+            val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+            val date = Date(timestamp * 1000) // Convert seconds to milliseconds
+            return dateFormat.format(date)
+        } catch (e: Exception) {
+            "Invalid date/time format"
+        }
     }
 
     fun convertToTime(inputDateTime: String): String {

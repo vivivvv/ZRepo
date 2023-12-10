@@ -42,8 +42,7 @@ class ForecastListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.timeText.text = Utils.convertToTime(forecastList[position].dt_txt)
-        holder.degreeText.text =
-            Utils.kelvinToCelsius(forecastList[position].main.temp).roundToInt().toString()
+        holder.degreeText.text = forecastList[position].main.temp.roundToInt().toString()
         setImage(forecastList[position].weather[0].main, holder.climateImg)
     }
 

@@ -19,14 +19,16 @@ interface ApiStories {
     suspend fun getWeather(
         @Query("lat") lat: String,
         @Query("lon") lon: String,
-        @Query("appid") appid: String
+        @Query("appid") appid: String,
+        @Query("units") units: String = "metric"
     ): WeatherDataModel
 
     @GET("data/2.5/forecast/")
     suspend fun getForecastWeather(
         @Query("lat") lat: String,
         @Query("lon") lon: String,
-        @Query("appid") appid: String
+        @Query("appid") appid: String,
+        @Query("units") units: String = "metric"
     ): WeatherForecastModel
 
 }
